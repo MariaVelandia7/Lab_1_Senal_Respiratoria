@@ -79,7 +79,10 @@ CIDIGO
 
 # Bibliografía
 [1] “Tutorial sensores de gas MQ2, MQ3, MQ7 y MQ135,” Naylamp Mechatronics - Perú. https://naylampmechatronics.com/blog/42_tutorial-sensores-de-gas-mq2-mq3-mq7-y-mq135.html 
+
 [2] C. G. Lausted y A. T. Johnson, "Respiratory System," en Biomedical Engineering Fundamentals, J. D. Bronzino, Ed. Boca Raton, FL, USA: CRC Press, 2006. https://doi.org/10.1201/9781420003857
+
 [3] J. F. Fieselmann, M. S. Hendryx, C. M. Helms y D. S. Wakefield, "Respiratory rate predicts cardiopulmonary arrest for internal medicine inpatients," Journal of General Internal Medicine, vol. 8, no. 7, pp. 354–360, Jul. 1993. https://doi.org/10.1007/BF02600071
+
 [4] Components101, "MQ135 Gas Sensor," [Online]. Disponible en: https://components101.com/sensors/mq135-gas-sensor-for-air-quality
 
