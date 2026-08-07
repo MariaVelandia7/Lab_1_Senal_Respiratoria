@@ -76,7 +76,13 @@ CIDIGO
 
 
 # Parte B — Captura temporizada, filtrado y análisis en frecuencia
+### 1. Captura temporizada
+Una vez programado el Arduino Uno, se desarrolló un código en MATLAB para realizar la adquisición de la señal durante un intervalo de tiempo que escoge el usuario mediante una ventana de diálogo que aparece al correr el programa. 
 
+Se uso la función 'serialport' para comunicar el Arduino con el MATLAB, configurando el puerto COM y alacenando las muestras en un vector llamado 'senal' con una frecuencia de muestreo de 25 Hz. La adquisición se logra visualizar en tiempo real, verificando más facilmente el correcto funcionamiento del sistema e identificando los patrones de la respiración. 
+
+###2. Filtrado de la señal
+Debido
 
 # Parte C — Análisis, discusión y conclusiones
 
