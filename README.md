@@ -55,7 +55,6 @@ Se seleccionó el sensor de gas MQ135, un sensor semiconductor basado en SnO₂ 
 
 ## 3. Circuito de acondicionamiento y digitalización
 
-POR REVISAR
 
 - **Alimentación:** +5 VDC (pin 5V del Arduino) al pin VCC del módulo MQ135.
 - **Salida analógica (AOUT):** conectada a la entrada analógica A0 del Arduino.
@@ -198,15 +197,17 @@ Limitaciones:
 ## Preguntas para la discusión
 
 **P1: ¿Son los patrones y frecuencias respiratorias iguales o diferentes en cada caso? ¿A qué se debe?**
-No son iguales. En reposo el patrón es regular; en el habla se vuelve irregular y la frecuencia tiende a [completar]. Se debe a que al hablar la respiración deja de depender solo de los centros automáticos del tallo cerebral y se coordina con la producción de voz: inhalaciones rápidas y exhalaciones prolongadas/controladas para sostener la fonación.
+Los patrones no son iguales. En reposo el patrón es regular y con mayor número de rpm; en el habla se vuelve irregular y la frecuencia tiende a disminuir. Esto se debe a que al hablar la respiración deja de depender solo de los centros automáticos del tallo cerebral y se coordina con la producción de voz: inhalaciones rápidas y exhalaciones prolongadas/controladas para sostener la fonación. En reposo fueron 12 rpm, mientras que al hablar se redujo a 9 rpm. 
 
 **P2: ¿Ventajas y desventajas de usar múltiples sensores? ¿Razones?**
-Ventajas: mayor robustez/redundancia, fusión de variables complementarias (CO2 + movimiento + temperatura) para mayor precisión, menos falsos positivos/negativos.
+Ventajas: información complementaria sobre otros factores del proceso respiratorio, como la concentración de CO2, el movimiento torácico o la temperatura del aire exhalado. Esta integración incrementa la confiabilidad de las mediciones, reduciendo la posibilidad de hacer detecciones erroneas que puedan llevar a un diagnostico poco preciso.
 
-Desventajas: mayor complejidad de acondicionamiento y sincronización, mayor costo/consumo, más incomodidad para el paciente, más carga de procesamiento. Razón de fondo: cada variable física tiene su propia relación señal/ruido y limitaciones; combinar sensores compensa debilidades individuales, a costa de mayor complejidad.
+Desventajas: mayor complejidad de acondicionamiento y sincronización, ya que requiere la convergencia de diferentes señales. Además al necesitan mayor procesamiento de datos se aumenta el costo y consumo energético. Por esto, la selección del número y los tipos de sensores depende del nivel de precisión requerido y la aplicación clínica. 
 
 ## Conclusiones
-[Completar: p. ej., la concentración de CO2 exhalado (vía MQ135) fue viable para detectar el patrón y diferenciar reposo de habla, pero su tiempo de respuesta la hace menos adecuada que sensores de flujo/presión para anomalías finas o de alta frecuencia]
+- La concentración de CO₂ exhalado resultó ser una variable adecuada para diferenciar la respiración en reposo de la respiración durante la verbalización, evidenciando cambios tanto en el dominio del tiempo como en el dominio de la frecuencia.
+- Se implementó adecuadamente un sistema de adquisición de la señal respiratoria utilizando el sensor MQ135, un Arduino Uno y MATLAB, permitiendo registrar el patrón respiratorio y calcular la frecuencia respiratoria de forma no invasiva.
+- El procesamiento digital mediante filtrado, detección de picos y análisis espectral con Fourier permitió  caracterizar el comportamiento de la señal y btener una estimación confiable de la frecuencia respiratoria.
 
 # Bibliografía
 [1] “Tutorial sensores de gas MQ2, MQ3, MQ7 y MQ135,” Naylamp Mechatronics - Perú. https://naylampmechatronics.com/blog/42_tutorial-sensores-de-gas-mq2-mq3-mq7-y-mq135.html 
