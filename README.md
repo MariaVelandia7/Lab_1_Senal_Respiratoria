@@ -66,8 +66,8 @@ Se seleccionó el sensor de gas MQ135, un sensor semiconductor basado en SnO₂ 
 
 | Condición | Descripción | Gráfica | Conteo y FFT |
 |---|---|---|---|
-| Reposo | Paciente respirando normalmente, sin hablar. Conteo manual: 12 respiraciones en 60 s | <img width="764" height="482" alt="reposo" src="https://github.com/user-attachments/assets/c18c7347-1366-458a-bbbf-637506b58dcb" />|<img width="750" height="450" alt="reposofft" src="https://github.com/user-attachments/assets/d871d371-4c7b-4e38-94c8-75b44f776e3d" />
-| Habla/lectura | Paciente leyendo un texto en voz alta durante la captura, 9 respiraciones en 60 s | <img width="760" height="504" alt="habla" src="https://github.com/user-attachments/assets/7d029b3c-2f33-4628-a1bc-eda9f1f11648" />|<img width="763" height="479" alt="hablafft" src="https://github.com/user-attachments/assets/9a3b06f2-2090-4160-9634-83757917075c" />
+| Reposo | Paciente respirando normalmente, sin hablar. Conteo: 12 respiraciones en 60 s | <img width="764" height="482" alt="reposo" src="https://github.com/user-attachments/assets/c18c7347-1366-458a-bbbf-637506b58dcb" />|<img width="750" height="450" alt="reposofft" src="https://github.com/user-attachments/assets/d871d371-4c7b-4e38-94c8-75b44f776e3d" />
+| Habla/lectura | Paciente leyendo un texto en voz alta durante la captura. Conteo: 9 respiraciones en 60 s | <img width="760" height="504" alt="habla" src="https://github.com/user-attachments/assets/7d029b3c-2f33-4628-a1bc-eda9f1f11648" />|<img width="763" height="479" alt="hablafft" src="https://github.com/user-attachments/assets/9a3b06f2-2090-4160-9634-83757917075c" />
 
 
 # Parte B — Explicación código de MATLAB y ARDUINO UNO
