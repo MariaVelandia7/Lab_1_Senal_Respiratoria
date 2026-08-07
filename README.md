@@ -63,20 +63,113 @@ POR REVISAR
 - **Digitalización:** se empleó el ADC de 10 bits integrado en el Arduino (`analogRead()`), obteniendo valores entre 0 y 1023 proporcionales al voltaje de salida del sensor (0–5 V).
 - **Precalentamiento:** se dejó estabilizar el sensor antes de la toma de datos (recomendado por el fabricante, 20–30 s), lo cual es relevante porque explica la deriva ascendente observada al inicio de las señales capturadas.
 
-## 4. Código de adquisición (Arduino)
-
-CIDIGO 
-
-## 5. Capturas del Serial Plotter
+## 4. Capturas del Serial Plotter
 
 | Condición | Descripción | Gráfica | Conteo y FFT |
 |---|---|---|---|
 | Reposo | Paciente respirando normalmente, sin hablar. Conteo manual: 12 respiraciones en 60 s | <img width="764" height="482" alt="reposo" src="https://github.com/user-attachments/assets/c18c7347-1366-458a-bbbf-637506b58dcb" />|<img width="750" height="450" alt="reposofft" src="https://github.com/user-attachments/assets/d871d371-4c7b-4e38-94c8-75b44f776e3d" />
-| Habla/lectura | Paciente leyendo un texto en voz alta durante la captura | <img width="760" height="504" alt="habla" src="https://github.com/user-attachments/assets/7d029b3c-2f33-4628-a1bc-eda9f1f11648" />|<img width="763" height="479" alt="hablafft" src="https://github.com/user-attachments/assets/9a3b06f2-2090-4160-9634-83757917075c" />
+| Habla/lectura | Paciente leyendo un texto en voz alta durante la captura, 9 respiraciones en 60 s | <img width="760" height="504" alt="habla" src="https://github.com/user-attachments/assets/7d029b3c-2f33-4628-a1bc-eda9f1f11648" />|<img width="763" height="479" alt="hablafft" src="https://github.com/user-attachments/assets/9a3b06f2-2090-4160-9634-83757917075c" />
 
 
-# Parte B — Captura temporizada, filtrado y análisis en frecuencia
+# Parte B — Explicación código de MATLAB y ARDUINO UNO
+## 1. Configuración de la comunicación serial
+``` puerto = "COM3"; ```
+``` baudrate = 9600;``` 
 
+s = serialport(puerto, baudrate);
+configureTerminator(s,"LF");
+Explicación
+
+Se establece la comunicación serial entre MATLAB y el Arduino Uno mediante el puerto USB. El Arduino envía continuamente las lecturas del sensor MQ-135 a una velocidad de 9600 baudios.
+
+## 2. Configuración del tiempo de adquisición
+respuesta = inputdlg(...)
+
+```  T = str2double(respuesta{1});``` 
+
+``` Fs = 25;```
+```N = Fs*T;```
+
+Explicación
+
+El usuario define el tiempo durante el cual se adquirirá la señal respiratoria.
+
+La frecuencia de muestreo es de 25 Hz, lo que significa que se registran 25 muestras por segundo.
+
+El número total de muestras se calcula mediante:
+
+N=Fs×T
+## 3. Adquisición de la señal
+```for k=1:N```
+
+    dato = str2double(readline(s));
+
+    senal(k)=dato;
+
+Explicación
+
+MATLAB recibe los datos enviados por el Arduino a través del puerto serial y los almacena en un vector llamado senal.
+
+Mientras se reciben los datos, la señal también se muestra en tiempo real.
+
+## 4. Almacenamiento de los datos
+save('senal_respiratoria.mat',...)
+
+writetable(...)
+Explicación
+
+La señal adquirida se guarda en dos formatos:
+
+MAT, para reutilizar los datos en MATLAB.
+CSV, para analizarlos en Excel u otros programas.
+## 5. Filtrado de la señal
+```senal_f = movmean(senal,5);```
+Explicación
+
+Se aplica un filtro de media móvil para reducir el ruido presente en la señal respiratoria y obtener una forma de onda más suave, facilitando el análisis posterior.
+
+## 6. Detección de respiraciones
+```[picos,locs] = findpeaks(...)```
+Explicación
+
+Se identifican automáticamente los máximos de la señal filtrada.
+
+Cada pico corresponde a una respiración realizada por el usuario.
+
+## 7. Frecuencia respiratoria
+```frecuencia_resp = respiraciones/T*60;```
+Explicación
+
+La frecuencia respiratoria se calcula contando el número de respiraciones detectadas durante el tiempo de adquisición y convirtiéndolas a respiraciones por minuto (rpm).
+
+La ecuación utilizada es:
+
+```FR=Tiempo/Respiraciones ×60```
+
+## 8. Análisis espectral (FFT)
+Y = fft(senal_fft);
+Explicación
+
+Se aplica la Transformada Rápida de Fourier (FFT) para transformar la señal del dominio del tiempo al dominio de la frecuencia.
+
+Este análisis permite identificar la frecuencia respiratoria dominante.
+
+## 9. Visualización de resultados
+subplot(3,1,1)
+subplot(3,1,2)
+subplot(3,1,3)
+Explicación
+
+El programa genera tres gráficas:
+
+Señal original: muestra los datos obtenidos directamente del sensor.
+Señal filtrada: muestra la señal suavizada y las respiraciones detectadas.
+Espectro FFT: presenta el contenido frecuencial de la señal y la frecuencia dominante.
+10. Cierre de la comunicación
+clear s
+Explicación
+
+Finalmente, se cierra la comunicación serial con el Arduino para liberar el puerto COM y permitir futuras adquisiciones sin conflictos.
 
 # Parte C — Análisis, discusión y conclusiones
 
