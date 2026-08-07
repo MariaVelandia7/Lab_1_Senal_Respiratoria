@@ -87,6 +87,10 @@ Debido
 # Parte C — Análisis, discusión y conclusiones
 
 ## Análisis 1 — Semejanzas y diferencias reposo vs. verbalización
+Gracias al uso de la mascarilla se mejoró la acumulación del aire exhalado, permitiendo identificar el cambio en el comportamiento periódico de la respiración por medio del sensor de CO2. 
+
+Durante el reposo se evidenció un patrón estable, con ciclos regulares de incremento y disminución de concentración de CO2 exhalado. 
+
 Nuestra señal en reposo,  mostró un patrón casi periódico y regular, con ciclos de duración similar entre sí. Durante el habla, el patrón se volvió irregular y aparecieron exhalaciones prolongadas (ligadas a la fonación, que ocurre en la fase espiratoria) seguidas de inhalaciones breves y bruscas — consistente con que el control respiratorio pasa de automático (bulbo raquídeo) a modulado voluntariamente por la corteza motora durante el habla.
 
 ## Análisis 2 — Alcance y limitaciones para detectar patologías
