@@ -20,7 +20,7 @@ Se implementó un sensor MQ135 (sensible a NH3, alcohol, benceno y CO₂)  [1] u
 
 ## Estructura del repositorio
 - Parte A = Adquisición de la señal: sensor, montaje, código Arduino, capturas
-- Parte B = MATLAB:  captura temporizada, filtrado, datos .mat, FFT
+- Parte B = MATLAB:  explicación código y adquisición
 - Parte C = Análisis:  análisis, preguntas de discusión, conclusiones
 
 ## Conclusión general
