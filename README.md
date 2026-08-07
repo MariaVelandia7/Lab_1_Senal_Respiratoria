@@ -76,31 +76,29 @@ CIDIGO
 
 
 # Parte B — Captura temporizada, filtrado y análisis en frecuencia
-### 1. Captura temporizada
-Una vez programado el Arduino Uno, se desarrolló un código en MATLAB para realizar la adquisición de la señal durante un intervalo de tiempo que escoge el usuario mediante una ventana de diálogo que aparece al correr el programa. 
 
-Se uso la función 'serialport' para comunicar el Arduino con el MATLAB, configurando el puerto COM y alacenando las muestras en un vector llamado 'senal' con una frecuencia de muestreo de 25 Hz. La adquisición se logra visualizar en tiempo real, verificando más facilmente el correcto funcionamiento del sistema e identificando los patrones de la respiración. 
-
-###2. Filtrado de la señal
-Debido
 
 # Parte C — Análisis, discusión y conclusiones
 
 ## Análisis 1 — Semejanzas y diferencias reposo vs. verbalización
 Gracias al uso de la mascarilla se mejoró la acumulación del aire exhalado, permitiendo identificar el cambio en el comportamiento periódico de la respiración por medio del sensor de CO2. 
 
-Durante el reposo se evidenció un patrón estable, con ciclos regulares de incremento y disminución de concentración de CO2 exhalado. Por medio de la función 'findpeaks' se encontró una frecuencia respiratoria de 12 por minuto, lo cual es totalmente compatible con la fisiología normal de un adulto, estando en el rango de 12-20 rpm.
+Durante el reposo se evidenció un patrón estable, con ciclos regulares de incremento y disminución de concentración de CO2 exhalado, y separación uniforme entre los picos. Por medio de la función 'findpeaks' se encontró una frecuencia respiratoria de 12 por minuto, lo cual es totalmente compatible con la fisiología normal de un adulto, estando en el rango de 12-20 rpm.
 
-Durante el habla se observó una disminución en la cantidad de picos, pues solo alcanzó 9 respiraciones por minuto. Es
+Durante el habla se observó una disminución en la cantidad de picos, pues solo alcanzó 9 respiraciones por minuto. En este caso la señal mostró menor periodicidad, con variaciones en las amplitudes y los tiempos entre respiraciones. Esto se debe a que durante la verbalización se prolonga la espiración para permitir la fonación, y las imspiraciones suceden rapidamente entre frases. Como resultado, los ciclos respiratorios son más demorados y se disminuye el número de respiraciones por minuto. 
+
+El análisis en frencuencia también ayudo a evidenciar la diferencia entre ambos casos, en reposo la mayor parte de la energía se concentró en una única frecuencia dominante, mientras que al hablar se presentaron varios picos de menor amplitud y distribuidos en un mayor rango de frecuencias. Además se comparó el valor de picos contados, con el cálculo de la mayor frecuencia multiplicada por 60. 
+
+En conjunto, el análisis temporal y frecuencial demostraron que durante el habla se reduce la cantidad de respiraciones por minuto, pues cada espiración es más lenta y el patrón es más irregular dependiendo de la cadencia y las pausas entre frases.
 
 ## Análisis 2 — Alcance y limitaciones para detectar patologías
 Alcance:
-- Permite estimar de forma no invasiva la frecuencia respiratoria y ver cualitativamente el patrón (regular/irregular).
-- La mascarilla concentra el gas exhalado, mejorando la señal vs. medir al aire libre.
+- Permite estimar la frecuencia respiratoria de forma no invasiva y ver cualitativamente el patrón (regular/irregular) a partir de las variaciones en concentración de CO2.
+- La mascarilla ayuda a concentrar el gas exhalado, mejorando la amplitud de la señal y reducir la influencia del ambiente.
 
 Limitaciones:
-- Tiempo de respuesta lento y precalentamiento → deriva de línea base, limita resolución temporal de eventos rápidos.
-- No selectivo: responde a varios gases, sensible a artefactos ambientales.
+- Tiempo de respuesta lento y proceso de precalentamiento → deriva de línea base, limita resolución temporal de eventos rápidos.
+- No selectivo: responde a varios gases, o a artefactos ambientales como la humedad, temperatura, etc.
 - Sensible a fugas de aire en el sello mascarilla-rostro.
 - No mide variables mecánicas (volumen/presión) → no permite diagnosticar patologías obstructivas/restrictivas específicas; solo detecta alteraciones generales de frecuencia/regularidad, útil como indicador general, no como herramienta diagnóstica clínica.
 
